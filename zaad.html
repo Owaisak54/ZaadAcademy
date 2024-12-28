@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaad Academy | أكاديمية ضاد | ضاد اکیڈمی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Cairo:wght@400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2D3436;
+            --secondary-color: #00B894;
+            --accent-color: #6C5CE7;
+            --text-light: #FFFFFF;
+            --text-dark: #2D3436;
+            --gradient-bg: linear-gradient(135deg, #2D3436, #000000);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --neon-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            line-height: 1.7;
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-color: #000000;
+            background-image: 
+                radial-gradient(at 40% 20%, rgba(0, 184, 148, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(108, 92, 231, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(0, 184, 148, 0.1) 0px, transparent 50%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            width: 160px;
+            height: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 10px rgba(108, 92, 231, 0.3));
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(-2deg);
+            filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.5));
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .language-selector select {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: var(--glass-border);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: var(--text-light);
+            cursor: pointer;
+            font-family: inherit;
+            transition: var(--transition);
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .language-selector select:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('path-to-hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .cta-button {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            color: var(--text-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            box-shadow: var(--neon-shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.7);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--text-light);
+        }
+
+        .lead {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .course-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .course-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+
+        .course-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: var(--accent-color);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .course-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .course-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .course-features i {
+            margin-right: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-bg);
+            padding: 6rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            margin-right: 1.5rem;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 5rem;
+            }
+            
+            .container {
+                padding: 4rem 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <img src="Logo3.jpg" alt="Zaad Academy Logo" class="logo" style="width: 8%;">
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select>
+            <option value="en">English</option>
+            <!-- <option value="ar">العربية</option>
+            <option value="ur">اردو</option> -->
+        </select>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="hero-content">
+            <h1>Zaad Academy</h1>
+            <p class="subtitle">Empowering Minds Through Language</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/10GF7j9s5a6BSsvhqIpq6ZwqUSVvebDZYR3gNvpgRn9M/edit" target="_blank">
+                    <button class="cta-button">Enroll Now</button>
+                </a>
+                  
+                <!-- <button class="cta-button">Learn More</button> -->
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <div class="about-content">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="lead">Welcome to Zaad Academy, where we make learning Arabic accessible, engaging, and effective through innovative teaching methods and personalized attention.</p>
+                    <p>Founded with a vision to bridge language barriers, we specialize in teaching Classical and Modern Standard Arabic to students worldwide. Our expert instructors combine traditional teaching methods with modern technology to create an immersive learning experience.</p>
+                </div>
+                <div class="about-image">
+                    <img src="Poster.jpg" alt="Students learning Arabic" class="about-img" style="width: 100%;">
+
+                    <div class="about-overlay">
+                        <span class="about-caption">Experience the joy of learning Arabic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="stats" class="container">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Students Taught</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Expert Teachers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Courses Offered</span>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <section id="features" class="container">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-item glass-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <div class="feature-content">
+                    <h3>Certified Programs</h3>
+                    <p>Earn a certification upon successful completion of your chosen program</p>
+                    <div class="feature-hover">
+                        <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <div class="feature-content">
+                    <h3>Small Class Sizes</h3>
+                    <p>Get personalized attention and maximize your learning with our intimate 30-student class limit</p>
+                    <div class="feature-hover">
+                        <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <div class="feature-content">
+                    <h3>Global Community</h3>
+                    <p>Join our diverse community of learners spanning multiple countries and build lasting connections</p>
+                    <div class="feature-hover">
+                        <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <div class="feature-content">
+                    <h3>Flexible Schedule</h3>
+                    <p>Learn at your convenience with multiple time slots available across all major time zones</p>
+                    <div class="feature-hover">
+                        <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2.5rem;
+                margin-top: 4rem;
+            }
+            
+            .feature-item.glass-card {
+                background: var(--glass-bg);
+                border-radius: 20px;
+                padding: 2.5rem;
+                text-align: center;
+                border: var(--glass-border);
+                backdrop-filter: blur(10px);
+                transition: var(--transition);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .feature-item.glass-card:hover {
+                transform: translateY(-10px);
+                box-shadow: var(--neon-shadow);
+            }
+            
+            .feature-icon {
+                position: relative;
+                margin-bottom: 1.5rem;
+                display: inline-block;
+            }
+            
+            .feature-icon i {
+                color: var(--accent-color);
+                transition: var(--transition);
+            }
+            
+            .icon-glow {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+                opacity: 0;
+                transition: var(--transition);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            .feature-item:hover .icon-glow {
+                opacity: 0.2;
+            }
+            
+            .feature-content h3 {
+                color: var(--secondary-color);
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+            
+            .feature-content p {
+                color: var(--text-light);
+                opacity: 0.9;
+                margin-bottom: 1.5rem;
+            }
+            
+            .feature-hover {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: var(--transition);
+            }
+            
+            .feature-item:hover .feature-hover {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .learn-more {
+                color: var(--accent-color);
+                font-weight: 600;
+                cursor: pointer;
+            }
+            
+            .learn-more i {
+                margin-left: 0.5rem;
+                transition: var(--transition);
+            }
+            
+            .learn-more:hover i {
+                transform: translateX(5px);
+            }
+        </style>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="container">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://exclusive.multibriefs.com/images/exclusive/0131ESLarabic.jpg" alt="Beginner Arabic Course">
+                    <div class="course-level">Beginner</div>
+                </div>
+                <div class="course-content">
+                    <h3>Foundations of Arabic</h3>
+                    <p>Master the Arabic alphabet, basic grammar, and essential vocabulary for everyday conversations.</p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-clock"></i> 12 Weeks</li>
+                        <li><i class="fas fa-book"></i> 24 Lessons</li>
+                        <li><i class="fas fa-signal"></i> Beginner Friendly</li>
+                    </ul>
+                    <button class="cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://discoverdiscomfort.com/wp-content/uploads/2018/09/plan-to-learn-egyptian-arabic-cover-image-1024x682.jpeg" alt="Intermediate Arabic Course">
+                    <div class="course-level">Intermediate</div>
+                </div>
+                <div class="course-content">
+                    <h3>Classical Arabic Mastery</h3>
+                    <p>Dive deep into classical texts, advanced grammar, and literary Arabic with expert guidance.</p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-clock"></i> 16 Weeks</li>
+                        <li><i class="fas fa-book"></i> 32 Lessons</li>
+                        <li><i class="fas fa-signal"></i> Intermediate Level</li>
+                    </ul>
+                    <button class="cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://quranonline.com/wp-content/uploads/2021/09/Take-online-Quran-learning-Classes.jpg" alt="Advanced Arabic Course">
+                    <div class="course-level">Advanced</div>
+                </div>
+                <div class="course-content">
+                    <h3>Quranic Arabic</h3>
+                    <p>Understand the linguistic miracles of the Quran through in-depth analysis and interpretation.</p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-clock"></i> 20 Weeks</li>
+                        <li><i class="fas fa-book"></i> 40 Lessons</li>
+                        <li><i class="fas fa-signal"></i> Advanced Level</li>
+                    </ul>
+                    <button class="cta-button">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Learning Section -->
+    <section id="online" class="container">
+        <h2 class="section-title">Experience World-Class Online Learning</h2>
+        <style>
+            .online-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto auto;
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .online-grid-item {
+                background: var(--glass-bg);
+                border: var(--glass-border);
+                border-radius: 1rem;
+                padding: 2rem;
+                backdrop-filter: blur(10px);
+                transition: var(--transition);
+            }
+
+            .online-grid-item:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--neon-shadow);
+            }
+
+            .feature-main {
+                grid-column: span 2;
+                grid-row: span 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .feature-tall {
+                grid-row: span 2;
+            }
+
+            .feature-icon-wrapper {
+                margin-bottom: 1.5rem;
+                color: var(--accent-color);
+                position: relative;
+            }
+
+            .icon-glow {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--accent-color);
+                filter: blur(25px);
+                opacity: 0.2;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+
+            .feature-list {
+                list-style: none;
+                margin: 1.5rem 0;
+            }
+
+            .feature-list li {
+                margin: 0.5rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .feature-list i {
+                color: var(--secondary-color);
+            }
+
+            @media (max-width: 1024px) {
+                .online-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .feature-main {
+                    grid-column: span 2;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .online-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .online-grid-item {
+                    grid-column: span 1;
+                    grid-row: span 1;
+                }
+            }
+        </style>
+        <div class="online-grid">
+            <div class="online-grid-item feature-main">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-graduation-cap fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Interactive Learning Platform</h3>
+                <p>Experience seamless education with our state-of-the-art virtual classroom featuring HD video streaming, interactive whiteboards, and real-time collaboration tools.</p>
+                <a href="#" class="learn-more">Explore Platform <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="online-grid-item feature-tall">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-video fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Live Sessions</h3>
+                <p>Connect with expert instructors in real-time through our immersive live classes.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> HD Video Quality</li>
+                    <li><i class="fas fa-check"></i> Interactive Q&A</li>
+                    <li><i class="fas fa-check"></i> Session Recordings</li>
+                </ul>
+            </div>
+
+            <div class="online-grid-item">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-book-reader fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Digital Resources</h3>
+                <p>Access our comprehensive library of study materials and multimedia content.</p>
+            </div>
+
+            <div class="online-grid-item">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-users fa-3x"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Community Hub</h3>
+                <p>Join our global community of learners and practice partners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="container">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="Logo2.jpg" alt="Arabic Learning Tips" style="width: 10%;">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">January 15, 2025</span>
+                    <h3>Top Tips for Learning Arabic Effectively</h3>
+                    <p>Discover proven strategies to enhance your Arabic language learning journey...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="Logo.jpg" alt="Arabic Culture" style="width: 10%;">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">January 10, 2025</span>
+                    <h3>Understanding Arabic Culture Through Language</h3>
+                    <p>Explore how language and culture are interconnected in the Arabic-speaking world...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="container">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">25</span>
+                    <span class="month">JAN</span>
+                </div>
+                <div class="event-details">
+                    <h3>Arabic Language Workshop</h3>
+                    <p class="event-time"><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</p>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Online</p>
+                    <button class="cta-button">Register Now</button>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">30</span>
+                    <span class="month">JAN</span>
+                </div>
+                <div class="event-details">
+                    <h3>Cultural Exchange Session</h3>
+                    <p class="event-time"><i class="fas fa-clock"></i> 3:00 PM - 5:00 PM</p>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Online</p>
+                    <button class="cta-button">Register Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope"></i> info@zaadacademy.com</p>
+                    <p><i class="fas fa-phone"></i> +91 96 22 506 154</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Batamaloo, Srinagar, Jammu and Kashmir</p>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option value="">Select Subject</option>
+                        <option value="courses">Courses Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="zaadlogo.png" alt="Zaad Academy Logo" class="footer-logo">
+                    <p>Empowering language learners worldwide through innovative Arabic education.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Student Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit" class="cta-button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zaad Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
