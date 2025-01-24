@@ -435,8 +435,124 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="container">
+    <!-- Instagram Posts Section -->
+    <section id="instagram-posts" class="container instagram-section">
+        <h2 class="section-title">Latest Instagram Posts</h2>
+        <div class="instagram-carousel">
+            <!-- Carousel items will be inserted here -->
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const carousel = document.querySelector('.instagram-carousel');
+                const leftButton = document.createElement('button');
+                const rightButton = document.createElement('button');
+    
+                leftButton.innerHTML = '&#10094;';
+                rightButton.innerHTML = '&#10095;';
+                leftButton.classList.add('carousel-button', 'left');
+                rightButton.classList.add('carousel-button', 'right');
+    
+                carousel.parentElement.appendChild(leftButton);
+                carousel.parentElement.appendChild(rightButton);
+    
+                // Enhanced Instagram post fetching with error handling and loading state
+                async function fetchInstagramPosts() {
+                    try {
+                        const response = await fetch('./instagramPosts.txt');
+                        const data = await response.text();
+                        const posts = data.split(',');
+    
+                        const carouselContainer = document.querySelector('.instagram-carousel');
+                        carouselContainer.innerHTML = ''; // Clear previous content
+    
+                        posts.forEach(post => {
+                            const postElement = document.createElement('div');
+                            postElement.className = 'carousel-item';
+                            postElement.innerHTML = `
+                                <blockquote 
+                                    class="instagram-media" 
+                                    data-instgrm-permalink="${post.trim()}" 
+                                    data-instgrm-version="14" 
+                                    style="background:#FFF; border:0; border-radius:15px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                                </blockquote>
+                            `;
+                            carouselContainer.appendChild(postElement);
+                        });
+    
+                        const script = document.createElement('script');
+                        script.src = "//www.instagram.com/embed.js";
+                        script.async = true;
+                        document.body.appendChild(script);
+                    } catch (error) {
+                        console.error('Error fetching Instagram posts:', error);
+                        carousel.innerHTML = '<p>Unable to load Instagram posts. Please try again later.</p>';
+                    }
+                }
+    
+                fetchInstagramPosts();
+    
+                let carouselScrollAmount = 0;
+                const scrollStep = 300;
+    
+                function scrollCarouselLeft() {
+                    carouselScrollAmount = Math.max(carouselScrollAmount - scrollStep, 0);
+                    carousel.scrollTo({ left: carouselScrollAmount, behavior: 'smooth' });
+                }
+    
+                function scrollCarouselRight() {
+                    carouselScrollAmount = Math.min(carouselScrollAmount + scrollStep, carousel.scrollWidth - carousel.clientWidth);
+                    carousel.scrollTo({ left: carouselScrollAmount, behavior: 'smooth' });
+                }
+    
+                leftButton.addEventListener('click', scrollCarouselLeft);
+                rightButton.addEventListener('click', scrollCarouselRight);
+    
+                // Auto-scroll with pause on hover
+                let autoScrollInterval;
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(scrollCarouselRight, 3000);
+                }
+    
+                function stopAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                }
+    
+                startAutoScroll();
+    
+                carousel.addEventListener('mouseenter', stopAutoScroll);
+                carousel.addEventListener('mouseleave', startAutoScroll);
+    
+                // Drag-to-scroll functionality
+                let isDown = false;
+                let startX;
+                let initialScrollLeft;
+    
+                carousel.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    startX = e.pageX - carousel.offsetLeft;
+                    initialScrollLeft = carousel.scrollLeft;
+                });
+    
+                carousel.addEventListener('mouseleave', () => {
+                    isDown = false;
+                });
+    
+                carousel.addEventListener('mouseup', () => {
+                    isDown = false;
+                });
+    
+                carousel.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - carousel.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    carousel.scrollLeft = initialScrollLeft - walk;
+                });
+            });
+        </script>
+    </section>      
+    <section>
         <h2 class="section-title">Latest Articles</h2>
         <div class="blog-grid">
             <article class="blog-card">

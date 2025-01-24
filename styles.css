@@ -339,6 +339,76 @@ section {
     color: var(--secondary-color);
 }
 
+
+/* Instagram */
+  
+.instagram-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+.instagram-carousel {
+    display: flex;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 20px 0;
+    position: relative;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: calc(33% - 1rem);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-button:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-button.left {
+    left: -60px;
+}
+
+.carousel-button.right {
+    right: -60px;
+}
+
+
+
 /* Footer */
 footer {
     background: var(--gradient-bg);
@@ -469,5 +539,30 @@ footer {
 
     .subtitle {
         font-size: 1.5rem;
+    }
+}
+@media (max-width: 1024px) {
+    .carousel-item {
+        width: calc(33% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        width: calc(33% - 1rem);
+    }
+
+    .carousel-button.left {
+        left: 0;
+    }
+
+    .carousel-button.right {
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        width: 100%;
     }
 }
