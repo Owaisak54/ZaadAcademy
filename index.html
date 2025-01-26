@@ -616,35 +616,220 @@
         <h2 class="section-title">Contact Us</h2>
         <div class="contact-grid">
             <div class="contact-info">
-                <h3>Get in Touch</h3>
+                <div class="info-header">
+                    <h3>Get in Touch</h3>
+                    <div class="accent-line"></div>
+                </div>
                 <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-                <div class="contact-details">
-                    <p><i class="fas fa-envelope"></i> info@zaadacademy.com</p>
-                    <p><i class="fas fa-phone"></i> +91 96 22 506 154</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Batamaloo, Srinagar, Jammu and Kashmir</p>
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Email</h4>
+                            <p>info@zaadacademy.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Phone</h4>
+                            <p>+91 96 22 506 154</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Location</h4>
+                            <p>Batamaloo, Srinagar, J&K</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                <div class="form-group floating">
+                    <input type="text" id="name" required>
+                    <label for="name">Your Name</label>
+                    <div class="input-highlight"></div>
                 </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                <div class="form-group floating">
+                    <input type="email" id="email" required>
+                    <label for="email">Your Email</label>
+                    <div class="input-highlight"></div>
                 </div>
                 <div class="form-group">
                     <select>
-                        <option value="">Select Subject</option>
+                        <option value="" disabled selected>Select Subject</option>
                         <option value="courses">Courses Inquiry</option>
                         <option value="support">Technical Support</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <textarea placeholder="Your Message" required></textarea>
+                <div class="form-group floating">
+                    <textarea id="message" required></textarea>
+                    <label for="message">Your Message</label>
+                    <div class="input-highlight"></div>
                 </div>
-                <button type="submit" class="cta-button">Send Message</button>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
+
+        <style>
+            #contact {
+                padding: 5rem 0;
+            }
+
+            .contact-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                margin-top: 3rem;
+            }
+
+            .info-header {
+                margin-bottom: 2rem;
+            }
+
+            .accent-line {
+                width: 50px;
+                height: 3px;
+                background: var(--accent-color);
+                margin-top: 1rem;
+            }
+
+            .contact-cards {
+                display: grid;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .contact-card {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                transition: transform 0.3s ease;
+            }
+
+            .contact-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .icon-wrapper {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--accent-color);
+                border-radius: 50%;
+                color: white;
+            }
+
+            .contact-form {
+                background: rgba(255, 255, 255, 0.03);
+                padding: 3rem;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .form-group {
+                position: relative;
+                margin-bottom: 2rem;
+            }
+
+            .floating input,
+            .floating textarea {
+                width: 100%;
+                padding: 1rem;
+                background: transparent;
+                border: none;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+                color: white;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            }
+
+            .floating label {
+                position: absolute;
+                left: 0;
+                top: 1rem;
+                transition: 0.3s ease all;
+                pointer-events: none;
+                color: rgba(255, 255, 255, 0.6);
+            }
+
+            .floating input:focus ~ label,
+            .floating input:not(:placeholder-shown) ~ label,
+            .floating textarea:focus ~ label,
+            .floating textarea:not(:placeholder-shown) ~ label {
+                top: -20px;
+                font-size: 0.9rem;
+                color: var(--accent-color);
+            }
+
+            .input-highlight {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                width: 0;
+                background: var(--accent-color);
+                transition: width 0.3s ease;
+            }
+
+            .floating input:focus ~ .input-highlight,
+            .floating textarea:focus ~ .input-highlight {
+                width: 100%;
+            }
+
+            select {
+                width: 100%;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.05);
+                border: none;
+                border-radius: 8px;
+                color: white;
+                cursor: pointer;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 1rem;
+                background: var(--accent-color);
+                border: none;
+                border-radius: 8px;
+                color: white;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+
+            .submit-btn:hover {
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                }
+            }
+        </style>
     </section>
 
     <!-- Footer -->
