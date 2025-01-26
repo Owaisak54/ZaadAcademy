@@ -710,6 +710,27 @@
                 </div>
                 <button type="submit" class="submit-btn">
                     <span>Send Message</span>
+                    <script>
+                    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            subject: document.getElementById('subject').value,
+                            message: document.getElementById('message').value
+                        };
+                        
+                        const formDataString = `New Contact Request:\n\nName: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\nMessage: ${formData.message}`;
+                        console.log(formDataString);
+                        
+                        // Encode the message for URL
+                        const encodedText = encodeURIComponent(formDataString);
+                        
+                        // Open WhatsApp with pre-filled message
+                        window.open(`https://wa.me/919622506154?text=${encodedText}`, '_blank');
+                    });
+                    </script>
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
