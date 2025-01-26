@@ -49,20 +49,31 @@ body {
     z-index: 1000;
 }
 
+
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+.logo {
+    height: 50px;
+    transition: var(--transition);
+    filter: drop-shadow(0 0 10px rgba(108, 92, 231, 0.3));
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.5));
+}
 
 .nav-right {
     display: flex;
-    gap: 3rem; /* Increased from 2rem */
     align-items: center;
+    gap: 2rem;
 }
 
 .nav-right a {
@@ -70,13 +81,13 @@ body {
     color: var(--text-light);
     font-weight: 600;
     transition: color 0.3s;
-    font-size: 1.2rem; /* Added font size */
-    padding: 0.8rem 1.2rem; /* Added padding */
+    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
 }
 
 .nav-right a:hover {
     color: var(--secondary-color);
-    transform: scale(1.1); /* Added scale effect on hover */
+    transform: scale(1.1);
 }
 
 .enroll-button {
@@ -91,6 +102,41 @@ body {
     background: var(--accent-color);
 }
 
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-right {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 24, 2, 0.9);  /* Using primary color with transparency */
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .nav-right.active {
+        display: flex;
+    }
+
+    .nav-right a {
+        padding: 0.5rem 0;
+    }
+
+    .language-selector {
+        margin-top: 1rem;
+    }
+}
 
 .logo {
 
@@ -105,31 +151,7 @@ body {
     filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.5));
 }
 
-.language-selector {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
 
-.language-selector select {
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    border: var(--glass-border);
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    color: var(--text-light);
-    cursor: pointer;
-    font-family: inherit;
-    transition: var(--transition);
-    outline: none;
-    font-size: 1rem;
-}
-
-.language-selector select:hover {
-    background: var(--accent-color);
-    transform: translateY(-2px);
-}
 
 .header {
     height: 100vh;

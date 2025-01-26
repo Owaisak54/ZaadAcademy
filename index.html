@@ -17,20 +17,13 @@
             <div class="nav-left">
                 <img src="Zaad Logo.png" alt="Zaad Academy Logo" class="logo">
             </div>
+            <div class="mobile-menu-btn">&#9776;</div> <!-- Burger icon -->
             <div class="nav-right">
                 <a href="#about">About</a>
                 <a href="#courses">Courses</a>
                 <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
                 <a href="https://docs.google.com/forms/d/10GF7j9s5a6BSsvhqIpq6ZwqUSVvebDZYR3gNvpgRn9M/edit" class="enroll-button">Enroll Now</a>
-            </div>
-            <!-- Language Selector -->
-            <div class="language-selector">
-                <select>
-                    <option value="en">English</option>
-                    <!-- <option value="ar">العربية</option>
-                    <option value="ur">اردو</option> -->
-                </select>
             </div>
         </div>
     </nav>
@@ -443,6 +436,15 @@
         </div>
 
         <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+        document.querySelector('.nav-right').classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-right a').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelector('.nav-right').classList.remove('active');
+        });
+    });
             document.addEventListener('DOMContentLoaded', function () {
                 const carousel = document.querySelector('.instagram-carousel');
                 const leftButton = document.createElement('button');
